@@ -10,32 +10,32 @@ const main = async () => {
 
   console.log("Testing Starts...");
 
-  let txn = await eppo.transfer(randomPerson.address, {
+  let txn = await eppo.transfer("0xE3e69AB94371d53Be1Bd06daa1D58CdAfd60d030", {
     value: hre.ethers.utils.parseEther("1"),
   });
   await txn.wait();
 
-  txn = await hre.ethers.provider.getBalance(
-    eppo.address
-  );
-  console.log("Contract Balance : ", hre.ethers.utils.formatEther(txn));
+  // txn = await hre.ethers.provider.getBalance(
+  //   eppo.address
+  // );
+  // console.log("Contract Balance : ", hre.ethers.utils.formatEther(txn));
 
-  txn = await eppo.cancel();
+  txn = await eppo.approveC("Luffy");
   await txn.wait();
   console.log("Trasaction cancel");
 
-  txn = await hre.ethers.provider.getBalance(
-    randomPerson.address
-  );
-  console.log("Pro balance : ", hre.ethers.utils.formatEther(txn));
+  // txn = await hre.ethers.provider.getBalance(
+  //   randomPerson.address
+  // );
+  // console.log("Pro balance : ", hre.ethers.utils.formatEther(txn));
 
-  txn = await hre.ethers.provider.getBalance(
-    owner.address
-  );
-  console.log("CLient Balance : ", hre.ethers.utils.formatEther(txn));
+  // txn = await hre.ethers.provider.getBalance(
+  //   owner.address
+  // );
+  // console.log("CLient Balance : ", hre.ethers.utils.formatEther(txn));
 
-  txn = await eppo.owner();
-  console.log("owner", txn);
+  // txn = await eppo.owner();
+  // console.log("owner", txn);
 
   txn = await eppo.connect(randomPerson).getHistory(randomPerson.address);
   var date = new Date(txn[0].time.toNumber());
