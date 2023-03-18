@@ -15,6 +15,25 @@ const main = async () => {
   });
   await txn.wait();
 
+  txn = await hre.ethers.provider.getBalance(
+    eppo.address
+  );
+  console.log("Contract Balance : ", hre.ethers.utils.formatEther(txn));
+
+  txn = await eppo.cancel();
+  await txn.wait();
+  console.log("Trasaction cancel");
+
+  txn = await hre.ethers.provider.getBalance(
+    randomPerson.address
+  );
+  console.log("Pro balance : ", hre.ethers.utils.formatEther(txn));
+
+  txn = await hre.ethers.provider.getBalance(
+    owner.address
+  );
+  console.log("CLient Balance : ", hre.ethers.utils.formatEther(txn));
+
   txn = await eppo.owner();
   console.log("owner", txn);
 
