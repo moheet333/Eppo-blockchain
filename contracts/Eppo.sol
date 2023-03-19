@@ -27,6 +27,7 @@ contract Eppo is ERC721URIStorage {
     }
 
     mapping(address => Transaction[]) internal History;
+    mapping(address => bool) internal getDiscount;
 
     constructor() ERC721("Eppo","EP") {
         owner = msg.sender;
@@ -66,6 +67,14 @@ contract Eppo is ERC721URIStorage {
         require(sent, "Failed to send Ether");
         emit Approved(balance);
         isApproved = true;
+    }
+
+    function GetDiscount() external onlyClient {
+        uint256 token = balanceOf(client);
+        if(token == 1) {
+            // give discount
+            getDiscount[msg.sender] = true;
+        }
     }
 
     function cancelPro() external onlyPro {

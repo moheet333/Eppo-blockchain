@@ -16,7 +16,7 @@ const main = async () => {
 
   txn = await eppo.approveC("zoro");
   await txn.wait();
-  console.log("Trasaction cancel");
+  console.log("Trasaction Done");
 
   const tokenOwner = await eppo.balanceOf(random.address);
   console.log(tokenOwner.toNumber());
